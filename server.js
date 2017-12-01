@@ -3,6 +3,8 @@ const hbs = require('hbs');
 const fs = require('fs');
 var app = express();
 
+const port = process.env.PORT || 3000;
+
 hbs.registerPartials(__dirname + '/views/partials')
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
@@ -16,12 +18,12 @@ app.use((req, res, next)=>{
   next();
 });
 
-app.use((req, res, next)=>{
-  res.render('maintainance.hbs',{
-    welcomeMessage: 'I have completed the challenge',
-    currentYear: new Date().getFullYear()
-  })
-})
+// app.use((req, res, next)=>{
+//   res.render('maintainance.hbs',{
+//     welcomeMessage: 'I have completed the challenge',
+//     currentYear: new Date().getFullYear()
+//   })
+// })
 
 app.get('/',(req, res) =>{
   //res.send('<h1>Hello Express!</h1>');
@@ -44,4 +46,4 @@ app.get('/bad', (req,res) =>{
   })
 });
 
-app.listen(3000);
+app.listen(port);
